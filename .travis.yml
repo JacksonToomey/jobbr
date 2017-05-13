@@ -1,6 +1,8 @@
 language: python
 python:
   - "3.6"
+cache:
+  yarn: true
 services:
   - postgresql
 before_script:
