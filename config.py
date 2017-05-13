@@ -14,3 +14,4 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('GOOGLE_CLIENT_ID')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET')
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 DEBUG = os.environ.get('DEBUG', '0') == '1'
+SKIP_SSL = os.environ.get('SKIP_SSL', '0') == '1'

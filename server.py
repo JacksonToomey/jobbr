@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_login import login_required
 from flask_migrate import Migrate
 from social_flask.routes import social_auth
@@ -7,15 +7,22 @@ import models
 
 
 def setup_app_routes(app):
-    @app.route('/login')
-    def login():
-        return render_template('login.html')
+    @app.before_request
+    def force_ssl():
+        if not app.config['SKIP_SSL'] and request.url.startswith('http://'):
+            new = request.url.replace('http://', 'https://', 1)
+            return redirect(new, code=301)
+
+    # @app.route('/login')
+    # def login():
+    #     return render_template('login.html')
 
     @app.route('/')
     @app.route('/<path:path>')
-    @login_required
+    # @login_required
     def index(path=None):
-        return render_template('app.html')
+        return 'coming soon'
+        # return render_template('app.html')
 
 
 def register_blueprints(app):
