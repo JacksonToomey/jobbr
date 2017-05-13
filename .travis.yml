@@ -10,20 +10,7 @@ script:
   - bash -c "source ~/.nvm/nvm.sh; nvm install $NODE_JS_VERSION; node --version"
 node_js:
   - "4.3"
-# addons:
-#   apt:
-#     sources:
-#       - ubuntu-toolchain-r-test
-#     packages:
-#       # nodejs >v4 compiler requirements
-#       - g++-4.8
-#       - openjdk-7-jdk
-# before_install:
-#   - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-#   - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-#   - sudo apt-get update -qq
-#   - sudo apt-get install -y -qq yarn
-# cache:
+cache:
   yarn: true
 services:
   - postgresql
