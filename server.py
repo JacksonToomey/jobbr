@@ -13,16 +13,15 @@ def setup_app_routes(app):
             new = request.url.replace('http://', 'https://', 1)
             return redirect(new, code=301)
 
-    # @app.route('/login')
-    # def login():
-    #     return render_template('login.html')
+    @app.route('/login')
+    def login():
+        return render_template('login.html')
 
     @app.route('/')
     @app.route('/<path:path>')
-    # @login_required
+    @login_required
     def index(path=None):
-        return 'coming soon'
-        # return render_template('app.html')
+        return render_template('app.html')
 
 
 def register_blueprints(app):

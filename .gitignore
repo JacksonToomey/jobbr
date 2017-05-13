@@ -6,3 +6,4 @@ secrets.py
 *.db
 static/
 .env
+development.py
