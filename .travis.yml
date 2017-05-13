@@ -18,8 +18,10 @@ services:
   - postgresql
 before_script:
   - curl -o ~/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh # update nvm
-  - bash -c "source ~/.nvm/nvm.sh; nvm install $TRAVIS_NODE_VERSION; node --version"
-  - bash -c "nvm use $NODE_JS_VERSION" || true
+  - source ~/.nvm/nvm.sh
+  - nvm install $TRAVIS_NODE_VERSION
+  - node --version
+  - nvm use $TRAVIS_NODE_VERSION
   - if [[ `npm -v` != 4* ]]; then npm i -g npm@4; fi
   - npm i -g yarn
   - node --version
