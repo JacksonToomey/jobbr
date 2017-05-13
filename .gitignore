@@ -7,3 +7,4 @@ secrets.py
 static/
 .env
 development.py
+static/
