@@ -1,9 +1,8 @@
 import datetime
 from flask_sqlalchemy import SQLAlchemy
-from social_flask_sqlalchemy.models import PSABase
 
 
-db = SQLAlchemy(metadata=PSABase.metadata)
+db = SQLAlchemy()
 
 
 class ModelBase(db.Model):

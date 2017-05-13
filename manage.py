@@ -2,7 +2,7 @@
 import click
 from flask.cli import FlaskGroup
 from flask_migrate import MigrateCommand
-from app import create_app
+from server import create_app
 
 
 def create_cli_app(info):
