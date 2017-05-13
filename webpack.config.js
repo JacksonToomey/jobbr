@@ -11,7 +11,6 @@ module.exports = {
             'react-redux',
             'redux',
             'react-router',
-            'react-router-redux',
             'redux-thunk',
             'reselect',
             'prop-types',
