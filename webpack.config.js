@@ -2,6 +2,23 @@ var webpack = require("webpack");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
+plugins = [
+    new ExtractTextPlugin('../css/style.css'),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
+]
+
+var devtool = '#source-map';
+var prod = process.argv.indexOf('-p') != -1;
+
+if(prod) {
+    devtool = false;
+    plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false
+        })
+    )
+}
+
 module.exports = {
     entry: {
         "app": "./client/app.jsx",
@@ -38,9 +55,6 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    plugins: [
-        new ExtractTextPlugin('../css/style.css'),
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' })
-    ],
-    devtool: '#source-map'
+    plugins,
+    devtool
 }
