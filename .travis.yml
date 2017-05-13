@@ -2,11 +2,16 @@ language: python
 python:
   - "3.6"
 sudo: required
-env:
-  - NODE_JS_VERSION=4.3
-script:
 node_js:
-  - "4.3"
+  - "4.3.2"
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 cache:
   yarn: true
 services:
@@ -14,7 +19,7 @@ services:
 before_script:
   - curl -o ~/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh # update nvm
   - bash -c "nvm use $NODE_JS_VERSION" || true
-  - bash -c "source ~/.nvm/nvm.sh; nvm install $NODE_JS_VERSION; node --version"
+  - bash -c "source ~/.nvm/nvm.sh; nvm install $TRAVIS_NODE_VERSION; node --version"
   - if [[ `npm -v` != 4* ]]; then npm i -g npm@4; fi
   - npm install -g yarn
   - psql -c 'create database jobbr;' -U postgres
