@@ -1,0 +1,8 @@
+node_modules/
+.vscode/
+__pycache__
+env/
+secrets.py
+*.db
+static/
+.env

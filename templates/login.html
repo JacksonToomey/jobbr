@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{{ url_for('social.auth', backend='google-oauth2') }}">Sign In with Google</a>
+{% endblock %}
