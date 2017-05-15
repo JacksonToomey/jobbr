@@ -27,12 +27,12 @@ module.exports = {
             'react-dom',
             'react-redux',
             'redux',
-            'react-router',
             'redux-thunk',
             'reselect',
             'prop-types',
             'axios',
             'immutable',
+            'redux-little-router',
         ]
     },
     output: {
