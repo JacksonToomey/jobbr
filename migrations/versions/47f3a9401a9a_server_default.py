@@ -1,8 +1,8 @@
-"""empty message
+"""server default
 
-Revision ID: 652ff7fda4d7
+Revision ID: 47f3a9401a9a
 Revises:
-Create Date: 2017-05-12 20:22:07.747709
+Create Date: 2017-05-17 16:43:01.488888
 
 """
 from alembic import op
@@ -11,7 +11,7 @@ import social_sqlalchemy
 
 
 # revision identifiers, used by Alembic.
-revision = '652ff7fda4d7'
+revision = '47f3a9401a9a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,9 +57,9 @@ def upgrade():
     op.create_index(op.f('ix_social_auth_partial_token'), 'social_auth_partial', ['token'], unique=False)
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('deleted', sa.Boolean(), nullable=False),
-    sa.Column('created', sa.DateTime(), nullable=True),
-    sa.Column('updated', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), server_default=sa.text('false'), nullable=False),
+    sa.Column('created', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
+    sa.Column('updated', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
     sa.Column('username', sa.String(length=255), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
@@ -68,9 +68,9 @@ def upgrade():
     )
     op.create_table('application',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('deleted', sa.Boolean(), nullable=False),
-    sa.Column('created', sa.DateTime(), nullable=True),
-    sa.Column('updated', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), server_default=sa.text('false'), nullable=False),
+    sa.Column('created', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
+    sa.Column('updated', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('company_name', sa.String(length=255), nullable=False),
     sa.Column('application_date', sa.DateTime(), nullable=False),
@@ -83,9 +83,9 @@ def upgrade():
     op.create_index(op.f('ix_application_position'), 'application', ['position'], unique=False)
     op.create_table('keyword',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('deleted', sa.Boolean(), nullable=False),
-    sa.Column('created', sa.DateTime(), nullable=True),
-    sa.Column('updated', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), server_default=sa.text('false'), nullable=False),
+    sa.Column('created', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
+    sa.Column('updated', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('keyword', sa.String(length=50), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE'),
@@ -95,9 +95,9 @@ def upgrade():
     op.create_index(op.f('ix_keyword_keyword'), 'keyword', ['keyword'], unique=False)
     op.create_table('resume_position',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('deleted', sa.Boolean(), nullable=False),
-    sa.Column('created', sa.DateTime(), nullable=True),
-    sa.Column('updated', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), server_default=sa.text('false'), nullable=False),
+    sa.Column('created', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
+    sa.Column('updated', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('company_name', sa.String(length=255), nullable=False),
     sa.Column('position_title', sa.String(length=255), nullable=False),
@@ -128,9 +128,9 @@ def upgrade():
     op.create_index(op.f('ix_social_auth_usersocialauth_user_id'), 'social_auth_usersocialauth', ['user_id'], unique=False)
     op.create_table('application_contact',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('deleted', sa.Boolean(), nullable=False),
-    sa.Column('created', sa.DateTime(), nullable=True),
-    sa.Column('updated', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), server_default=sa.text('false'), nullable=False),
+    sa.Column('created', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
+    sa.Column('updated', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
     sa.Column('application_id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=255), nullable=True),
     sa.Column('last_name', sa.String(length=255), nullable=True),
@@ -143,9 +143,9 @@ def upgrade():
     )
     op.create_table('application_event',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('deleted', sa.Boolean(), nullable=False),
-    sa.Column('created', sa.DateTime(), nullable=True),
-    sa.Column('updated', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), server_default=sa.text('false'), nullable=False),
+    sa.Column('created', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
+    sa.Column('updated', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
     sa.Column('application_id', sa.Integer(), nullable=False),
     sa.Column('event_time', sa.DateTime(), nullable=False),
     sa.Column('event_type', sa.String(length=255), nullable=False),
@@ -164,9 +164,9 @@ def upgrade():
     )
     op.create_table('position_accomplishment',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('deleted', sa.Boolean(), nullable=False),
-    sa.Column('created', sa.DateTime(), nullable=True),
-    sa.Column('updated', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), server_default=sa.text('false'), nullable=False),
+    sa.Column('created', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
+    sa.Column('updated', sa.DateTime(), server_default=sa.text('current_timestamp'), nullable=True),
     sa.Column('position_id', sa.Integer(), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
     sa.ForeignKeyConstraint(['position_id'], ['resume_position.id'], ondelete='CASCADE'),

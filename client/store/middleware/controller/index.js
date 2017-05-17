@@ -1,6 +1,8 @@
 import { LOCATION_CHANGED } from 'redux-little-router';
 import { fetchJobs } from '../api/actions';
 
+import { setJobs } from '../../state/jobs/actions';
+
 
 export default store => next => action => {
     let resp = next(action);
@@ -11,7 +13,7 @@ export default store => next => action => {
 
                 }
                 else {
-                    console.log(res.body);
+                    store.dispatch(setJobs(res.body));
                 }
             })
         }

@@ -3,6 +3,7 @@ from flask_login import login_required
 from flask_migrate import Migrate
 from social_flask.routes import social_auth
 from social_flask_sqlalchemy.models import init_social
+from serializers import ma
 from api import api
 import models
 
@@ -35,6 +36,7 @@ def init_libraries(app):
     Migrate(app, models.db)
     init_social(app, models.db.session)
     models.user.init_auth(app)
+    ma.init_app(app)
 
 
 def create_app(config='config'):
