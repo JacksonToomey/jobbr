@@ -6,7 +6,6 @@
   "author": "JacksonToomey <jacksontoomey@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.1",
     "babel": "^6.23.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
@@ -26,6 +25,7 @@
     "reselect": "^3.0.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
+    "superagent": "^3.5.2",
     "webpack": "^2.3.3"
   }
 }

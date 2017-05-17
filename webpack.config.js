@@ -30,7 +30,7 @@ module.exports = {
             'redux-thunk',
             'reselect',
             'prop-types',
-            'axios',
+            'superagent',
             'immutable',
             'redux-little-router',
         ]

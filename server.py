@@ -3,6 +3,7 @@ from flask_login import login_required
 from flask_migrate import Migrate
 from social_flask.routes import social_auth
 from social_flask_sqlalchemy.models import init_social
+from api import api
 import models
 
 
@@ -26,6 +27,7 @@ def setup_app_routes(app):
 
 def register_blueprints(app):
     app.register_blueprint(social_auth)
+    app.register_blueprint(api, url_prefix='/api')
 
 
 def init_libraries(app):
