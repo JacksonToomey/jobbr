@@ -17,7 +17,7 @@ export const getJobs = createSelector(
             return new List()
         }
 
-        let jobs = jobsMap.toIndexedSeq().toArray();
+        let jobs = jobsMap.toList();
         return jobs
     }
 )

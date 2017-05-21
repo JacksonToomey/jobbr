@@ -24,8 +24,10 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.0",
     "sass-loader": "^6.0.3",
+    "semantic-ui-css": "^2.2.10",
     "style-loader": "^0.16.1",
     "superagent": "^3.5.2",
+    "superagent-mocker": "^0.5.2",
     "webpack": "^2.3.3"
   }
 }

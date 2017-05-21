@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 
 const Comp = props => {
     return (
-        <div className="jobbr-navigation">
-            <h1>Jobbr</h1>
-            <ul>
-                <li>Jobs</li>
-                <li>Resume</li>
-            </ul>
+        <div className="ui top fixed menu jobbr-navigation">
+            <div className="item">Jobbr</div>
+            <a className="item">Jobs</a>
+            <a className="item">Resume</a>
         </div>
     )
 };

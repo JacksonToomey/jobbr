@@ -10,9 +10,11 @@ export default props => (
     <Fragment forRoute="/">
         <div>
             <Navigation />
+            <div className="ui container" style={ { marginTop: '80px' } }>
             <Fragment forRoute="/">
                 <Jobs />
             </Fragment>
+            </div>
         </div>
     </Fragment>
 )
