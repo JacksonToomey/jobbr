@@ -42,7 +42,11 @@ class Application(ModelBase):
         nullable=False,
     )
     company_name = db.Column(db.String(255), nullable=False, index=True)
-    application_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    application_date = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.datetime.utcnow
+    )
     application_notes = db.Column(db.Text, nullable=True)
     position = db.Column(db.String(255), nullable=False, index=True)
 

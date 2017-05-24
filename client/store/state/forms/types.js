@@ -1,0 +1,4 @@
+const PREFIX = 'JOBBR_FORMS/';
+
+export const UPDATE_FORM = PREFIX + 'UPDATE_FORM';
+export const RESET_FORM = PREFIX + 'RESET_FORM';

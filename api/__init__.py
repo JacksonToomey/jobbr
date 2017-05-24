@@ -11,7 +11,7 @@ api = Blueprint('api', __name__)
 @login_required
 def get_jobs():
     serializer = ApplicationSerializer(many=True)
-    return jsonify(serializer.dump(Application.query.all()).data)
+    return jsonify(serializer.dump(Application.active().all()).data)
 
 
 @api.route('/jobs/', methods=['POST'])

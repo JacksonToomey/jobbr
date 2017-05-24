@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'redux-little-router';
 
 import { getJobsLoaded, getJobs } from '../store/state/jobs/selectors';
 
 
 const Comp = ({
     jobsLoaded,
-    jobs
+    jobs,
+    goToNew,
 }) => {
     let body = null;
     if(!jobsLoaded) {
@@ -40,7 +42,7 @@ const Comp = ({
     return (
         <div className="jobbr-jobs ui stackable grid container">
             <div className="sixteen wide column">
-                <button className="ui button">Add</button>
+                <button onClick={ goToNew } className="ui button">Add</button>
             </div>
             { body }
         </div>
@@ -52,7 +54,11 @@ const mapStateToProps = state => ({
     jobs: getJobs(state),
 })
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+    goToNew: () => {
+        dispatch(push('/new'));
+    }
+})
 
 export default connect(
     mapStateToProps,

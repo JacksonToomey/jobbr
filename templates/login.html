@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Jobbr Login</h1>
-<a href="{{ url_for('social.auth', backend='google-oauth2') }}">Sign In with Google</a>
+<div class="ui container">
+    <h1 class="ui top attached header">Jobbr Login</h1>
+    <div class="ui attached segment">
+        <a class="fluid ui basic button" href="{{ url_for('social.auth', backend='google-oauth2') }}">Sign In with Google</a>
+    </div>
+</div>
 {% endblock %}

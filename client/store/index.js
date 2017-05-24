@@ -4,6 +4,8 @@ import { routerForBrowser } from 'redux-little-router';
 import routes from '../routes';
 
 import jobs from './state/jobs';
+import messages from './state/messages';
+import forms from './state/forms';
 
 import api from './middleware/api';
 import controller from './middleware/controller';
@@ -20,7 +22,9 @@ const {
 const store = createStore(
     combineReducers({
         router: reducer,
-        jobs
+        jobs,
+        messages,
+        forms,
     }),
     compose(enhancer, applyMiddleware(middleware, api, controller))
 );
