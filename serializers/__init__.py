@@ -1,5 +1,5 @@
 from flask_marshmallow import Marshmallow
-from models import Application
+from models import Application, db
 
 ma = Marshmallow()
 

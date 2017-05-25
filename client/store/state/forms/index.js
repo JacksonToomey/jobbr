@@ -20,7 +20,7 @@ export default (state = new State(), action) => {
             } = action.payload;
             return state.withMutations(s => {
                 return s.setIn([formName, formField], value);
-            })
+            });
         default:
             return state;
     }

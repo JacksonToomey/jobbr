@@ -84,6 +84,10 @@ export default store => next => action => {
     switch(action.type) {
         case types.FETCH_JOBS:
             return requests.get('/api/jobs/')
+        case types.POST_JOB:
+            return requests.post('/api/jobs/')
+                .send(action.payload)
+                .set('Accept', 'application/json')
         default:
             return next(action);
     }

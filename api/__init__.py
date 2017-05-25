@@ -18,7 +18,7 @@ def get_jobs():
 @login_required
 def create_job():
     serializer = ApplicationSerializer()
-    app = serializer.load(request.json).data
+    app = serializer.load(request.get_json()).data
     app.user = g.user
     db.session.add(app)
     db.session.commit()

@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { makeGetFormData } from '../store/state/forms/selectors';
 
 import { updateForm } from '../store/state/forms/actions';
+import { createJob } from '../store/state/jobs/actions';
 
 const Comp = ({
     newJob,
-    set
+    set,
+    create,
 }) => {
     return (
         <div className="jobbr-create-job">
@@ -29,7 +31,9 @@ const Comp = ({
                         placeholder="Position"/>
                 </div>
             </form>
-            <button className="ui button">Add</button>
+            <button
+                className="ui button"
+                onClick={ create }>Add</button>
         </div>
     )
 }
@@ -44,6 +48,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     set: (name, value) => {
         dispatch(updateForm(name, value, 'job'));
+    },
+    create: () => {
+        dispatch(createJob());
     }
 });
 

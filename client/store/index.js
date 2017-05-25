@@ -1,5 +1,6 @@
 import { combineReducers, compose, createStore, applyMiddleware } from 'redux';
 import { routerForBrowser } from 'redux-little-router';
+import ReduxThunk from 'redux-thunk'
 
 import routes from '../routes';
 
@@ -26,7 +27,7 @@ const store = createStore(
         messages,
         forms,
     }),
-    compose(enhancer, applyMiddleware(middleware, api, controller))
+    compose(enhancer, applyMiddleware(middleware, api, controller, ReduxThunk))
 );
 
 export default store;
