@@ -2,3 +2,4 @@ const PREFIX = 'JOBBR_FORMS/';
 
 export const UPDATE_FORM = PREFIX + 'UPDATE_FORM';
 export const RESET_FORM = PREFIX + 'RESET_FORM';
+export const SET_FORM_ERRORS = PREFIX + 'SET_FORM_ERRORS';

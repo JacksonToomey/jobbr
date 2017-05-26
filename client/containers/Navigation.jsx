@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const Comp = props => {
     return (
         <div className="ui top fixed menu jobbr-navigation">
-            <div className="item">Jobbr</div>
+            <div className="item"><img style={{width: '60px'}} src="/static/images/jobbr.png"/></div>
             <a className="item">Jobs</a>
             <a className="item">Resume</a>
         </div>

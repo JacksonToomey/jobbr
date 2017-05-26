@@ -1,16 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { makeGetFormData } from '../store/state/forms/selectors';
+import { makeGetFormData, makeGetFormErrors } from '../store/state/forms/selectors';
 
 import { updateForm } from '../store/state/forms/actions';
 import { createJob } from '../store/state/jobs/actions';
 
 const Comp = ({
     newJob,
+    errors,
     set,
     create,
 }) => {
+    let formErrors = {
+        company_name: null,
+        position: null
+    }
+    if(errors.get('company_name')) {
+        formErrors.company_name = (
+            <div className="ui error message" style={{display: 'block'}}>
+                <ul>
+                    {errors.get('company_name').map((e, key) => {
+                        return <li key={ key }>{ e }</li>
+                    })}
+                </ul>
+            </div>
+        )
+    }
+    if(errors.get('position')) {
+        formErrors.position = (
+            <div className="ui error message" style={{display: 'block'}}>
+                <ul>
+                    {errors.get('position').map((e, key) => {
+                        return <li key={ key }>{ e }</li>
+                    })}
+                </ul>
+            </div>
+        )
+    }
     return (
         <div className="jobbr-create-job">
             <form className="ui form">
@@ -22,6 +49,7 @@ const Comp = ({
                         type="text"
                         placeholder="Company"/>
                 </div>
+                { formErrors.company_name }
                 <div className="field">
                     <label>Position</label>
                     <input
@@ -29,6 +57,7 @@ const Comp = ({
                         onChange={e => { set('position', e.target.value); } }
                         type="text"
                         placeholder="Position"/>
+                    { formErrors.position }
                 </div>
             </form>
             <button
@@ -39,10 +68,12 @@ const Comp = ({
 }
 
 const getFormData = makeGetFormData('job');
+const getFormErrors = makeGetFormErrors('job');
 
 
 const mapStateToProps = state => ({
     newJob: getFormData(state),
+    errors: getFormErrors(state),
 });
 
 const mapDispatchToProps = dispatch => ({
