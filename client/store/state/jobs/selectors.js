@@ -21,3 +21,17 @@ export const getJobs = createSelector(
         return jobs
     }
 )
+
+export const getCurrentJob = createSelector(
+    [
+        ({ router }) => router.params,
+        getJobsMap
+    ],
+    (params, jobsMap) => {
+        if(params && params.jobid) {
+            return jobsMap.get(parseInt(params.jobid));
+        }
+
+        return null;
+    }
+)

@@ -4,11 +4,15 @@ import { push } from 'redux-little-router';
 
 import { getJobsLoaded, getJobs } from '../store/state/jobs/selectors';
 
+import { deleteJob } from '../store/state/jobs/actions';
+
 
 const Comp = ({
     jobsLoaded,
     jobs,
     goToNew,
+    goToJob,
+    sendDelete,
 }) => {
     let body = null;
     if(!jobsLoaded) {
@@ -30,8 +34,20 @@ const Comp = ({
                         <div>{ j.get('position') }</div>
                         <div>{ j.get('application_date') }</div>
                         <div className="two ui buttons">
-                            <button className="ui basic button">View</button>
-                            <button className="ui basic button">Delete</button>
+                            <button
+                                onClick={() => {
+                                    goToJob(j.get('id'));
+                                }}
+                                className="ui basic button">
+                                View
+                            </button>
+                            <button
+                                onClick={() => {
+                                    sendDelete(j.get('id'));
+                                }}
+                                className="ui basic button">
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -57,6 +73,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     goToNew: () => {
         dispatch(push('/new'));
+    },
+    goToJob: jobId => {
+        dispatch(push('/jobs/' + jobId))
+    },
+    sendDelete: jobId => {
+        dispatch(deleteJob(jobId));
     }
 })
 

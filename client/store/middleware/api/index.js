@@ -88,6 +88,11 @@ export default store => next => action => {
             return requests.post('/api/jobs/')
                 .send(action.payload)
                 .set('Accept', 'application/json')
+        case types.FETCH_JOB:
+            let jobId = action.payload;
+            return requests.get('/api/jobs/' + jobId + '/')
+        case types.DELETE_JOB:
+            return requests.delete('/api/jobs/' + action.payload + '/');
         default:
             return next(action);
     }

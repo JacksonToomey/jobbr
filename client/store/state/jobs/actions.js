@@ -1,7 +1,7 @@
 import { Map, fromJS } from 'immutable';
 import { push } from 'redux-little-router';
 
-import { postJob } from '../../middleware/api/actions';
+import * as api from '../../middleware/api/actions';
 
 import { resetForm } from '../forms/actions';
 import { setFormErrors } from '../forms/actions';
@@ -23,12 +23,17 @@ export const addJob = job => ({
     payload: fromJS(job),
 })
 
+export const removeJob = jobId => ({
+    type: types.REMOVE_JOB,
+    payload: jobId
+})
+
 export const createJob = () => (dispatch, getState) => {
     let {
         forms
     } = getState();
     let newJob = forms.get('job');
-    dispatch(postJob(newJob)).end((err, res) => {
+    dispatch(api.postJob(newJob)).end((err, res) => {
         if(err) {
             if(res.status == 422) {
                 dispatch(setFormErrors('job', res.body.errors));
@@ -37,7 +42,14 @@ export const createJob = () => (dispatch, getState) => {
         else {
             dispatch(addJob(res.body));
             dispatch(resetForm('job'));
-            dispatch(push('/'));
+            dispatch(push('/jobs/' + res.body.id));
         }
+    })
+}
+
+export const deleteJob = jobId => dispatch => {
+    console.log('delete ' + jobId);
+    dispatch(api.deleteJob(jobId)).end((err, res) => {
+        dispatch(removeJob(jobId));
     })
 }
