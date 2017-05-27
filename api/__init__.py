@@ -18,7 +18,8 @@ def handle_not_found(e):
 @login_required
 def get_jobs():
     serializer = ApplicationSerializer(many=True)
-    return jsonify(serializer.dump(Application.active().all()).data)
+    apps = Application.get_user_applications(g.user).all()
+    return jsonify(serializer.dump(apps).data)
 
 
 @api.route('/jobs/', methods=['POST'])
@@ -39,7 +40,9 @@ def create_job():
 
 @api.route('/jobs/<app_id>/', methods=['GET'])
 def get_job(app_id):
-    app = Application.active().filter_by(id=app_id).first()
+    app = Application.get_user_applications(g.user)\
+        .filter_by(id=app_id)\
+        .first()
     if app is None:
         return abort(404)
     serializer = ApplicationSerializer()
@@ -48,7 +51,9 @@ def get_job(app_id):
 
 @api.route('/jobs/<app_id>/', methods=['DELETE'])
 def delete_job(app_id):
-    app = Application.active().filter_by(id=app_id).first()
+    app = Application.get_user_applications(g.user)\
+        .filter_by(id=app_id)\
+        .first()
     if app is None:
         return abort(404)
     app.deleted = True

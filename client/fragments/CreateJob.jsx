@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Datepicker from 'react-datepicker';
 
 import { makeGetFormData, makeGetFormErrors } from '../store/state/forms/selectors';
 
@@ -58,6 +59,20 @@ const Comp = ({
                         type="text"
                         placeholder="Position"/>
                     { formErrors.position }
+                </div>
+                <div className="field">
+                    <label>Date</label>
+                    <Datepicker
+                        selected={ newJob.get('application_date') }
+                        onChange={dte => {
+                            set('application_date', dte);
+                        }}/>
+                </div>
+                <div className="field">
+                    <label>Notes</label>
+                    <textarea
+                        value={ newJob.get('application_notes') }
+                        onChange={e => { set('application_notes', e.target.value); }}/>
                 </div>
             </form>
             <button

@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import JobInfo from '../containers/JobInfo';
+import ContactsList from '../containers/ContactsList';
+import JobEvents from '../containers/JobEvents';
+
 import { getCurrentJob } from '../store/state/jobs/selectors';
 
 
@@ -15,8 +19,19 @@ const Comp = ({
         )
     }
     return (
-        <div className="jobbr-job-detail">
-            { job.get('company_name') } - { job.get('position') }
+        <div className="jobbr-job-detail ui mobile reversed stackable grid">
+            <div className="ui four wide column">
+                <div className="ui segment">
+                    <JobInfo />
+                    <div className="ui divider"></div>
+                    <ContactsList />
+                </div>
+            </div>
+            <div className="ui twelve wide column">
+                <div className="ui segment">
+                    <JobEvents />
+                </div>
+            </div>
         </div>
     )
 }

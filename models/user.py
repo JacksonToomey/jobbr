@@ -4,8 +4,8 @@ from models.db import ModelBase, db
 
 
 class User(ModelBase):
-    username = db.Column(db.String(255), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
+    username = db.Column(db.String(255), nullable=False, unique=True, index=True)
+    email = db.Column(db.String(255), nullable=False, unique=True, index=True)
 
     @property
     def is_authenticated(self):

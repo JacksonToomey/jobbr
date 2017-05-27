@@ -30,9 +30,10 @@ class ResumePosition(ModelBase):
     position_start_date = db.Column(
         db.DateTime,
         nullable=False,
+        index=True,
         default=datetime.datetime.utcnow,
     )
-    position_end_date = db.Column(db.DateTime, nullable=True)
+    position_end_date = db.Column(db.DateTime, nullable=True, index=True)
     position_start_title = db.Column(db.String(255), nullable=True, index=True)
     starting_salary = db.Column(db.Integer, nullable=True, index=True)
     salary = db.Column(db.Integer, nullable=True, index=True)

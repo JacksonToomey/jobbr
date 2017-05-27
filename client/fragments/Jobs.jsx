@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     goToNew: () => {
-        dispatch(push('/new'));
+        dispatch(push('/jobs/new'));
     },
     goToJob: jobId => {
         dispatch(push('/jobs/' + jobId))

@@ -45,6 +45,7 @@ class Application(ModelBase):
     application_date = db.Column(
         db.DateTime,
         nullable=False,
+        index=True,
         default=datetime.datetime.utcnow
     )
     application_notes = db.Column(db.Text, nullable=True)
@@ -80,6 +81,10 @@ class Application(ModelBase):
         lazy='dynamic'
     )
 
+    @classmethod
+    def get_user_applications(cls, user):
+        return cls.active().filter_by(user_id=user.id)
+
 
 class ApplicationEvent(ModelBase):
     application_id = db.Column(
@@ -90,11 +95,12 @@ class ApplicationEvent(ModelBase):
     event_time = db.Column(
         db.DateTime,
         nullable=False,
+        index=True,
         default=datetime.datetime.utcnow
     )
     event_type = db.Column(db.String(255), nullable=False, index=True)
     event_description = db.Column(db.String(255), nullable=False, index=True)
-    application_notes = db.Column(db.Text, nullable=True)
+    event_notes = db.Column(db.Text, nullable=True)
 
     contacts = db.relationship(
         'ApplicationContact',
@@ -110,9 +116,9 @@ class ApplicationContact(ModelBase):
         db.ForeignKey('application.id', ondelete='CASCADE'),
         nullable=False,
     )
-    first_name = db.Column(db.String(255), nullable=True)
-    last_name = db.Column(db.String(255), nullable=True)
-    email = db.Column(db.String(255), nullable=True)
-    phone_number = db.Column(db.String(255), nullable=True)
-    position = db.Column(db.String(255), nullable=True)
+    first_name = db.Column(db.String(255), nullable=True, index=True)
+    last_name = db.Column(db.String(255), nullable=True, index=True)
+    email = db.Column(db.String(255), nullable=True, index=True)
+    phone_number = db.Column(db.String(255), nullable=True, index=True)
+    position = db.Column(db.String(255), nullable=True, index=True)
     contact_notes = db.Column(db.Text, nullable=True)

@@ -10,6 +10,7 @@ import store from './store';
 import Main from './Main';
 
 import './app.scss';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 ReactDOM.render(

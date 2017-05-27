@@ -1,9 +1,12 @@
 import { Record, fromJS } from 'immutable';
+import moment from 'moment-timezone';
 import * as types from './types';
 
 const NewJob = Record({
     company_name: '',
     position: '',
+    application_date: moment(),
+    application_notes: '',
 });
 
 const State = Record({

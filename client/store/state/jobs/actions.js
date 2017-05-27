@@ -48,7 +48,6 @@ export const createJob = () => (dispatch, getState) => {
 }
 
 export const deleteJob = jobId => dispatch => {
-    console.log('delete ' + jobId);
     dispatch(api.deleteJob(jobId)).end((err, res) => {
         dispatch(removeJob(jobId));
     })

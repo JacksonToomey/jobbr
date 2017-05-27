@@ -14,15 +14,18 @@ class ModelBase(db.Model):
         db.Boolean,
         nullable=False,
         default=False,
+        index=True,
         server_default=text('false')
     )
     created = db.Column(
         db.DateTime,
+        index=True,
         default=datetime.datetime.utcnow,
         server_default=text('current_timestamp'),
     )
     updated = db.Column(
         db.DateTime,
+        index=True,
         default=datetime.datetime.utcnow,
         onupdate=datetime.datetime.utcnow,
         server_default=text('current_timestamp'),
