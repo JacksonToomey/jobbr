@@ -7,6 +7,7 @@ import routes from '../routes';
 import jobs from './state/jobs';
 import messages from './state/messages';
 import forms from './state/forms';
+import modals from './state/modals';
 
 import api from './middleware/api';
 import controller from './middleware/controller';
@@ -26,6 +27,7 @@ const store = createStore(
         jobs,
         messages,
         forms,
+        modals,
     }),
     compose(enhancer, applyMiddleware(middleware, api, controller, ReduxThunk))
 );

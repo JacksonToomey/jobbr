@@ -35,3 +35,18 @@ export const getCurrentJob = createSelector(
         return null;
     }
 )
+
+export const getCurrentEvents = createSelector(
+    [getCurrentJob],
+    job => job.get('events').sortBy(e => e.get('event_time'), (a, b) => {
+        if(a == b) {
+            return 0;
+        }
+
+        if(a < b) {
+            return 1;
+        }
+
+        return -1;
+    }),
+)

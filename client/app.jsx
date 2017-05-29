@@ -11,6 +11,7 @@ import Main from './Main';
 
 import './app.scss';
 import 'react-datepicker/dist/react-datepicker.css';
+import 'rc-time-picker/assets/index.css';
 
 
 ReactDOM.render(

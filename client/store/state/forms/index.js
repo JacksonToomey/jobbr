@@ -9,10 +9,19 @@ const NewJob = Record({
     application_notes: '',
 });
 
+const NewEvent = Record({
+    event_time: moment(),
+    event_type: '',
+    event_description: '',
+    event_notes: '',
+})
+
 const State = Record({
     job: new NewJob(),
+    event: new NewEvent(),
     errors: fromJS({
         job: {},
+        event: {},
     })
 });
 

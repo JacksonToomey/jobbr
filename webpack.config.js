@@ -36,6 +36,7 @@ module.exports = {
             'moment',
             'moment-timezone',
             'react-datepicker',
+            'rc-time-picker',
         ]
     },
     output: {
