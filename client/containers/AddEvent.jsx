@@ -4,10 +4,13 @@ import moment from 'moment-timezone';
 import Datepicker from 'react-datepicker';
 import TimePicker from 'rc-time-picker';
 
+import Error from '../components/Error';
+
 import { makeGetFormData, makeGetFormErrors } from '../store/state/forms/selectors';
 
 import { updateForm, resetForm } from '../store/state/forms/actions';
 import { setModal } from '../store/state/modals/actions';
+import { createEvent } from '../store/state/jobs/actions';
 
 
 const Comp = ({
@@ -16,6 +19,8 @@ const Comp = ({
     setHide,
     event,
     set,
+    create,
+    errors,
 }) => {
     let style = {
         display: 'none'
@@ -42,6 +47,9 @@ const Comp = ({
                                     onChange={e => { set('event_type', e.target.value); } }
                                     value={ event.get('event_type') }
                                     placeholder="Type"/>
+                                    <Error
+                                        errors={ errors }
+                                        fieldName="event_type" />
                             </div>
                             <div className="field">
                                 <label>Description</label>
@@ -50,6 +58,9 @@ const Comp = ({
                                     onChange={e => { set('event_description', e.target.value); } }
                                     value={ event.get('event_description') }
                                     placeholder="Description"/>
+                                    <Error
+                                        errors={ errors }
+                                        fieldName="event_description" />
                             </div>
                             <div className="field">
                                 <div className="six fields">
@@ -72,6 +83,9 @@ const Comp = ({
                                             value={ event.get('event_time') } />
                                     </div>
                                 </div>
+                                <Error
+                                    errors={ errors }
+                                    fieldName="event_time" />
                             </div>
                             <div className="field">
                                 <label>Notes</label>
@@ -79,12 +93,15 @@ const Comp = ({
                                     onChange={e => { set('event_notes', e.target.value); } }
                                     value={ event.get('event_notes') }
                                     rows="2"/>
+                                <Error
+                                    errors={ errors }
+                                    fieldName="event_notes" />
                             </div>
                         </form>
                     </div>
                     <div className="actions">
                         <button className="ui button" onClick={ setHide }>Close</button>
-                        <button className="ui button">Add</button>
+                        <button className="ui button" onClick={ create }>Add</button>
                     </div>
                 </div>
             </div>
@@ -99,6 +116,7 @@ const getFormErrors = makeGetFormErrors('event');
 const mapStateToProps = state => ({
     show: state.modals.get('addEvent'),
     event: getFormData(state),
+    errors: getFormErrors(state),
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -111,6 +129,9 @@ const mapDispatchToProps = dispatch => ({
     },
     set: (name, value) => {
         dispatch(updateForm(name, value, 'event'));
+    },
+    create: () => {
+        dispatch(createEvent());
     }
 })
 

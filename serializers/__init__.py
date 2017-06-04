@@ -10,6 +10,16 @@ class ApplicationEventSerializer(ma.ModelSchema):
     class Meta:
         model = ApplicationEvent
 
+    @validates('event_type')
+    def valid_type(self, event_type):
+        if event_type.strip() == '':
+            raise ValidationError('Event type cannot be empty')
+
+    @validates('event_description')
+    def valid_description(self, event_description):
+        if event_description.strip() == '':
+            raise ValidationError('Event description cannot be empty')
+
 
 class ApplicationSerializer(ma.ModelSchema):
     class Meta:

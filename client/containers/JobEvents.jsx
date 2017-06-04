@@ -9,7 +9,6 @@ import { getCurrentEvents } from '../store/state/jobs/selectors';
 const Comp = ({
     events,
 }) => {
-    console.log(events.toJS());
     let body = null;
     if(events.size == 0) {
         body = <div>No events.</div>;

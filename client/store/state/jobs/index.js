@@ -11,6 +11,8 @@ export default (state = fromJS({ needsLoading: false }), action) => {
             return state.set(job.get('id'), job);
         case types.REMOVE_JOB:
             return state.remove(action.payload);
+        case types.ADD_EVENT:
+            return state.updateIn([action.payload.get('application'), 'events'], e => e.unshift(action.payload));
         default:
             return state;
     }

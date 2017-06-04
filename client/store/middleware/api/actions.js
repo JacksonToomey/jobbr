@@ -17,4 +17,12 @@ export const postJob = job => ({
 export const deleteJob = jobId => ({
     type: types.DELETE_JOB,
     payload: jobId,
+});
+
+export const postApplicationEvent = (event, jobId) => ({
+    type: types.POST_APPLICATION_EVENT,
+    payload: {
+        event,
+        jobId,
+    }
 })
